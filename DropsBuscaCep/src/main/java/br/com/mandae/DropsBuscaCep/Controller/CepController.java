@@ -19,7 +19,7 @@ public class CepController {
     @GetMapping("/cep/{postalcode}")
     public ResponseEntity consultarDistrito(@PathVariable String postalcode) {
 
-       ResponseResults responseResults = serviceCep.RetornarPontoCep(postalcode);
+       ResponseResults responseResults = serviceCep.RetornarPontoCep(postalcode).getBody();
         return ResponseEntity.ok(responseResults);
     }
 }

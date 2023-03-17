@@ -1,6 +1,10 @@
 package br.com.mandae.DropsBuscaCep.Response.ServiceCep;
 
 import br.com.mandae.DropsBuscaCep.Response.ResponseResults;
+import org.junit.jupiter.api.Assertions;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,7 +21,7 @@ public class ServiceCep {
 
         ResponseEntity<ResponseResults> responseReults =  restTemplate.getForEntity(URI,ResponseResults.class);
 
-        return  responseReults;
+         return  responseReults;
 
 
     }
