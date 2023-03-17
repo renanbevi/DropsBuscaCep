@@ -16,10 +16,10 @@ public class CepController {
     @Autowired
     private ServiceCep serviceCep;
 
-    @GetMapping("/{postalcode}")
-    public ResponseEntity<ResponseEntity<ResponseResults>> consultarDistrito(@PathVariable String postalcode) {
+    @GetMapping("/cep/{postalcode}")
+    public ResponseEntity consultarDistrito(@PathVariable String postalcode) {
 
-        ResponseEntity<ResponseResults> responseResults = serviceCep.RetornarPontoCep(postalcode);
+       ResponseResults responseResults = serviceCep.RetornarPontoCep(postalcode);
         return ResponseEntity.ok(responseResults);
     }
 }

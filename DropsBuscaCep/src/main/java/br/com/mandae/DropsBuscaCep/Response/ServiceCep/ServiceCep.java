@@ -4,19 +4,25 @@ import br.com.mandae.DropsBuscaCep.Response.ResponseResults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 public class ServiceCep {
-    public ResponseEntity<ResponseResults> RetornarPontoCep(String postalcode) {
+    public ResponseResults RetornarPontoCep(String postalcode) {
 
-        //https://pudo-api.pontodrops.com.br/businessunits/api/v1/business-units/nearby/02126040 exemplo
-        String URI = "https://pudo-api.pontodrops.com.br/businessunits/api/v1/business-units/nearby/" + postalcode;
 
-        RestTemplate restTemplate = new RestTemplate();
+        String url = "https://pudo-api.pontodrops.com.br/businessunits";
+        String uri = "/api/v1/business-units/nearby/{postalcode}";
 
-        ResponseEntity<ResponseResults> responseReults =  restTemplate.getForEntity(URI,ResponseResults.class);
+        ResponseResults responseResults = WebClient
+                .create(url)
+                .get()
+                .uri(uri, postalcode)
+                .retrieve()
+                .bodyToMono(ResponseResults.class).block();
 
-        return responseReults;
+        return responseResults;
     }
-
 }
+
+
